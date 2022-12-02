@@ -6,15 +6,18 @@
         xmlns:local="clr-namespace:HR_Department"
         mc:Ignorable="d"
         Title="AboutProgram" Height="200" Width="300">
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-        <StackPanel.Resources>
-            <Style TargetType="TextBlock">
-                <Setter Property="FontSize" Value="16"/>
-            </Style>
-        </StackPanel.Resources>
-        <TextBlock Text="Програма розроблена"/>
-        <TextBlock Text="студентами групи П01"/>
-        <TextBlock Text="компьютерної академії"/>
-        <TextBlock Text="ITSTEP у 2022 році"/>
-    </StackPanel>
+    <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Image Source="Images/logo.png" Width="75" Height="75"/>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="16"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock Text="Програма розроблена"/>
+            <TextBlock Text="студентами групи П01"/>
+            <TextBlock Text="компьютерної академії"/>
+            <TextBlock Text="ITSTEP у 2022 році"/>
+        </StackPanel>
+    </WrapPanel>
 </Window>
