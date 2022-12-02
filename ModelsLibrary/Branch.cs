@@ -11,6 +11,7 @@ namespace ModelsLibrary
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        public Employee Boss { get; set; }
         public List<Department> Departments { get; set; }
     }
 }
