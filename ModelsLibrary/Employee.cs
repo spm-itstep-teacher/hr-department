@@ -13,5 +13,6 @@ namespace ModelsLibrary
         public int Age { get; set; }
         public string Position { get; set; }
         public DateTime EmpDate { get; set; }
+        public DateTime BirthDate { get; set; }
     }
 }
