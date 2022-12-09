@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="DepartmentsEditor" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="Add" Content="Button" HorizontalAlignment="Left" Margin="301,348,0,0" VerticalAlignment="Top" Width="91" Height="40"/>
+        <ListBox x:Name="DepList" HorizontalAlignment="Left" Height="206" Margin="301,123,0,0" VerticalAlignment="Top" Width="200"/>
+        <Button x:Name="Del" Content="Button" HorizontalAlignment="Left" Margin="407,348,0,0" VerticalAlignment="Top" Width="94" Height="40"/>
+        <TextBox x:Name="DepName" HorizontalAlignment="Left" Height="23" Margin="301,77,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="200"/>
     </Grid>
 </Window>
