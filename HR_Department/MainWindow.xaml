@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HR_Department"
+        xmlns:viewModels="clr-namespace:ViewModelsLibrary;assembly=ViewModelsLibrary"
+        xmlns:models="clr-namespace:ModelsLibrary;assembly=ModelsLibrary"
         mc:Ignorable="d"
-        Title="MainWindow" Height="525" Width="1200">
+        Title="MainWindow" Height="525" Width="1200" MaxHeight="525" MinHeight="525" MinWidth="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -13,19 +15,20 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <StackPanel DataContext="{Binding SelectedBranch}">
             <Label Content="Branches" HorizontalContentAlignment="Center" FontSize="22"/>
             <TextBlock Text="Name:" Margin="10, 5"/>
-            <TextBox x:Name="txtBranchName" Margin="10, 0, 10, 0"/>
+            <TextBox x:Name="txtBranchName" Margin="10, 0, 10, 0" Text="{Binding Name}"/>
             <TextBlock Text="Address:" Margin="10, 5"/>
-            <TextBox x:Name="txtBranchAddress" Margin="10, 0, 10, 0"/>
+            <TextBox x:Name="txtBranchAddress" Margin="10, 0, 10, 0" Text="{Binding Address}"/>
             <TextBlock Text="Boss:" Margin="10, 5"/>
-            <TextBox x:Name="txtBranchBoss" Margin="10, 0, 10, 5"/>
-            <ListBox x:Name="listBranches" Margin="5" Height="250"/>
+            <TextBox x:Name="txtBranchBoss" Margin="10, 0, 10, 5" Text="{Binding Boss.Name}"/>
+            <ListBox x:Name="listBranches" Margin="5" Height="250" ItemsSource="{Binding BranchesView}" 
+                     SelectedItem="{Binding SelectedBranch}"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
-                <Button Width="70" Height="30" Content="Add"/>
-                <Button Width="70" Height="30" Content="Modify"/>
-                <Button Width="70" Height="30" Content="Remove"/>
+                <Button x:Name="btnAddBranch" Width="70" Height="30" Content="Add"/>
+                <Button x:Name="btnModifyBranch" Width="70" Height="30" Content="Modify"/>
+                <Button x:Name="btnRemoveBranch" Width="70" Height="30" Content="Remove"/>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.ColumnSpan="2">
@@ -37,53 +40,56 @@
                 <StackPanel Grid.ColumnSpan="2">
                     <Label Content="Department" FontSize="22" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel DataContext="{Binding SelectedDepartment}">
                     <TextBlock Text="Name:" Margin="10, 45, 0, 5"/>
-                    <TextBox x:Name="txtDepartmentName" Margin="10, 0, 10, 0"/>
+                    <TextBox x:Name="txtDepartmentName" Margin="10, 0, 10, 0" Text="{Binding Name}"/>
                     <TextBlock Text="Description:" Margin="10, 5"/>
-                    <TextBox x:Name="txtDepartmentDescription" Margin="10, 0, 10, 0"/>
+                    <TextBox x:Name="txtDepartmentDescription" Margin="10, 0, 10, 0" Text="{Binding Description}"/>
                     <TextBlock Text="Boss:" Margin="10, 5"/>
-                    <TextBox x:Name="txtDepartmentBoss" Margin="10, 0, 10, 5"/>
-                    <ListBox x:Name="listDepartments" Margin="5" Height="250"/>
+                    <TextBox x:Name="txtDepartmentBoss" Margin="10, 0, 10, 5" Text="{Binding Boss.Name}"/>
+                    <ListBox x:Name="listDepartments" Margin="5" Height="250" ItemsSource="{Binding DepartmentsView}"
+                             SelectedItem="{Binding SelectedDepartment}"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
-                        <Button Width="70" Height="30" Content="Add"/>
-                        <Button Width="70" Height="30" Content="Modify"/>
-                        <Button Width="70" Height="30" Content="Remove"/>
+                        <Button x:Name="btnAddDepartment" Width="70" Height="30" Content="Add"/>
+                        <Button x:Name="btnModifyDepartment" Width="70" Height="30" Content="Modify"/>
+                        <Button x:Name="btnRemoveDepartment" Width="70" Height="30" Content="Remove"/>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel Grid.Column="1">
+                <StackPanel Grid.Column="1" DataContext="{Binding SelectedDepEmployee}">
                     <TextBlock Text="Name:" Margin="10, 45, 0, 5"/>
-                    <TextBox x:Name="txtDepEmployeeName" Margin="10, 0, 10, 0"/>
+                    <TextBox x:Name="txtDepEmployeeName" Margin="10, 0, 10, 0" Text="{Binding Name}"/>
                     <TextBlock Text="Age:" Margin="10, 5"/>
-                    <TextBox x:Name="txtDepEmployeeAge" Margin="10, 0, 10, 0"/>
+                    <TextBox x:Name="txtDepEmployeeAge" Margin="10, 0, 10, 0" Text="{Binding Age}"/>
                     <TextBlock Text="Position:" Margin="10, 5"/>
-                    <TextBox x:Name="txtDepEmployeePosition" Margin="10, 0, 10, 5"/>
+                    <TextBox x:Name="txtDepEmployeePosition" Margin="10, 0, 10, 5" Text="{Binding Position}"/>
                     <TextBlock Text="Works from:" Margin="10, 5"/>
-                    <DatePicker x:Name="datePickDepEmployeeStart" Margin="10, 0, 10, 0"/>
+                    <DatePicker x:Name="datePickDepEmployeeStart" Margin="10, 0, 10, 0" SelectedDate="{Binding EmpDate}"/>
                     <TextBlock Text="Birthday:" Margin="10, 5"/>
-                    <DatePicker x:Name="datePickDepEmployeeBirthday" Margin="10, 0, 10, 0"/>
-                    <ListBox x:Name="listDepEmployees" Margin="5" Height="150"/>
+                    <DatePicker x:Name="datePickDepEmployeeBirthday" Margin="10, 0, 10, 0" SelectedDate="{Binding BirthDate}"/>
+                    <ListBox x:Name="listDepEmployees" Margin="5" Height="150" ItemsSource="{Binding SelectedDepEmployeesView}" 
+                             SelectedItem="{Binding SelectedDepEmployee}"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
-                        <Button Width="70" Height="30" Content="Add"/>
-                        <Button Width="70" Height="30" Content="Modify"/>
-                        <Button Width="70" Height="30" Content="Remove"/>
+                        <Button x:Name="btnAddDepEmployee" Width="70" Height="30" Content="Add"/>
+                        <Button x:Name="btnModifyDepEmployee" Width="70" Height="30" Content="Modify"/>
+                        <Button x:Name="btnRemoveDepEmployee" Width="70" Height="30" Content="Remove"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </StackPanel>
-        <StackPanel Grid.Column="3">
+        <StackPanel Grid.Column="3" DataContext="{Binding SelectedEmployee}">
             <Label Content="Employees" HorizontalContentAlignment="Center" FontSize="22"/>
             <TextBlock Text="Name:" Margin="10, 5, 0, 5"/>
-            <TextBox x:Name="txtEmployeeName" Margin="10, 0, 10, 0"/>
+            <TextBox x:Name="txtEmployeeName" Margin="10, 0, 10, 0" Text="{Binding Name}"/>
             <TextBlock Text="Age:" Margin="10, 5"/>
-            <TextBox x:Name="txtEmployeeAge" Margin="10, 0, 10, 0"/>
+            <TextBox x:Name="txtEmployeeAge" Margin="10, 0, 10, 0" Text="{Binding Age}"/>
             <TextBlock Text="Position:" Margin="10, 5"/>
-            <TextBox x:Name="txtEmployeePosition" Margin="10, 0, 10, 5"/>
+            <TextBox x:Name="txtEmployeePosition" Margin="10, 0, 10, 5" Text="{Binding Position}"/>
             <TextBlock Text="Works from:" Margin="10, 5"/>
-            <DatePicker x:Name="datePickEmployeeStart" Margin="10, 0, 10, 0"/>
+            <DatePicker x:Name="datePickEmployeeStart" Margin="10, 0, 10, 0" SelectedDate="{Binding EmpDate}"/>
             <TextBlock Text="Birthday:" Margin="10, 5"/>
-            <DatePicker x:Name="datePickEmployeeBirthday" Margin="10, 0, 10, 0"/>
-            <ListBox x:Name="listEmployees" Margin="5" Height="150"/>
+            <DatePicker x:Name="datePickEmployeeBirthday" Margin="10, 0, 10, 0" SelectedDate="{Binding BirthDate}"/>
+            <ListBox x:Name="listEmployees" Margin="5" Height="150" ItemsSource="{Binding EmployeesView}"
+                     SelectedItem="{Binding SelectedEmployee}"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 10, 0, 0">
                 <Button Width="70" Height="30" Content="Add"/>
                 <Button Width="70" Height="30" Content="Modify"/>
